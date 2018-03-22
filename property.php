@@ -50,7 +50,6 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
             echo "<th>City</th>";
             echo "<tr>";
             foreach($result as $row){
-                // echo implode(",",$row)."<br>";
                 echo "<tr>";
                 echo "<td>".$row['clientno']."</td>";
                 echo "<td>".$row['cfname'].' '.$row['clname']."</td>";
@@ -76,6 +75,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
             $stmt->bindParam(':propertyType', $propertyType);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $st = array();
             if (count($result)> 0) {
                 echo "<table style='width:100%'>";
                 echo "<tr>";
@@ -105,6 +105,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
                     echo "<td>".$row['staffno']."</td>";
                     echo "<td>".$row['fname'].' '.$row['lname']."</td>";
                     echo "<td>".$row['branchno']."</td>";
+                    array_push($st, $row['fname'].' '.$row['lname']);
                     echo "</tr>";
                 }
                 echo "</table>";
@@ -127,8 +128,15 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 <?php
 if($isShow){
     echo '<form action="/request_view.php" METHOD="POST">
-        <div>email : <input type="text" placeholder="ex: name@gmail.com" name="request_email" required> <button type="submit">Send</button> </div>
-        </form>';
+        <div>email : <input type="text" placeholder="ex: example@gmail.com" name="request_email" required> <button type="submit">Send</button> </div>';
+    $temp = 'p';
+    foreach($st as $v){
+        $temp = $v;
+    }
+    // echo $temp;
+    echo 'Staff name : <input name="staff_name" value="'.$temp.'" readonly/>';
+    echo  '</form>';
+
 }
 ?>
 <div>

@@ -24,9 +24,9 @@ $mail->Username =$Username;
 $mail->Password = $Password;
 $mail->SetFrom('dreamhome_5710545023@ku.th');
 $mail->Subject = "Dreamhome";
-$mail->Body = "Your request is now on the waiting list and a staff (“With the staff name) will be schedule the visit for viewing later.";
+$mail->Body = "Your request is now on the waiting list and a staff (".$_POST['staff_name'].") will be schedule the visit for viewing later.";
 $mail->AddAddress($toEmail);
-
+// echo $_POST['staff_name'];
  if(!$mail->Send()) {
     echo "Mailer Error: " . $mail->ErrorInfo;
  } else {
