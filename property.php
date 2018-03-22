@@ -36,7 +36,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (count($result)> 0) {
             $isShow = false;
-            echo "<table style='width:100%'>";
+            echo "<table id='res0' style='width:100%'>";
             echo "<tr>";
             echo "<th>Client Number</th>";
             echo "<th>Client Name</th>";
@@ -66,7 +66,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
             }
             echo "</table>";
             echo "</br>";
-            echo "<div><button>Print</button></div>";
+            echo "<div><button onclick='window.print()'>Print</button></div>";
             echo "</br>";
         } else {
             $query = "SELECT * From PropertyForRent as P, Staff
